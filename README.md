@@ -31,7 +31,7 @@ func main() {
 		log.Fatal(err)
 	}
 
-	fmt.Println(english)
+	fmt.Println(english) // "John 3:16"
 }
 ```
 
