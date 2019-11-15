@@ -164,6 +164,13 @@ func Format(s string) (string, error) {
 			endBook = endBookList[1]
 		}
 
+		// If we're dealing with a range inside one chapter in the
+		// Psalms, revert back.
+		if startBook == endBook && startParts[1] == endParts[1] {
+			startBook = startBookList[0]
+			endBook = endBookList[0]
+		}
+
 		result += startBook
 		result += " "
 
@@ -177,6 +184,11 @@ func Format(s string) (string, error) {
 		}
 
 		result += "-"
+
+		if startBook == endBook && startParts[1] == endParts[1] {
+			result += endParts[2]
+			return result, nil
+		}
 
 		if startBook != endBook {
 			result += endBook
